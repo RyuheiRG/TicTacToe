@@ -1,0 +1,191 @@
+/* Fuente y colores base */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap');
+
+:root {
+    --main-bg-color: #242424;
+    --main-text-color: #eeeeee;
+    --accent-color: #00ccff;
+    --hover-color: #ffcc00;
+    --button-bg-color: #00ff99;
+    --button-hover-bg-color: #ff00ff;
+    --border-radius: 8px;
+    --transition-speed: 0.3s;
+    --square-size: 100px;
+}
+
+/* Estilos generales */
+body {
+    margin: 0;
+    font-family: 'Orbitron', sans-serif;
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+    display: flex;
+    justify-content: center;
+    min-width: 320px;
+    min-height: 100vh;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Contenedor del tablero */
+.board {
+    width: fit-content;
+    margin: 40px auto;
+    text-align: center;
+}
+
+/* Títulos */
+.board h1 {
+    color: var(--accent-color);
+    margin-bottom: 16px;
+}
+
+/* Botones */
+.board button {
+    padding: 12px 24px;
+    margin: 10px;
+    background: var(--button-bg-color);
+    border: none;
+    color: var(--main-bg-color);
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed);
+    box-shadow: 0 4px 6px rgba(0, 255, 153, 0.5);
+    cursor: pointer;
+}
+
+.board button:hover {
+    background: var(--button-hover-bg-color);
+    box-shadow: 0 6px 10px rgba(255, 0, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.board button:active {
+    background: var(--hover-color);
+    box-shadow: 0 3px 5px rgba(255, 204, 0, 0.5);
+    transform: translateY(0);
+}
+
+/* Diseño del tablero */
+.board .game {
+    display: grid;
+    grid-template-columns: repeat(3, var(--square-size));
+    gap: 10px;
+}
+
+.turn {
+  display: flex;
+  justify-content: center;
+  margin: 15px auto;
+  width: fit-content;
+  position: relative;
+  border-radius: 10px;
+  pointer-events: none;
+  color: var(--secondary-text-color);
+}
+
+.turn .square,
+.winner .square {
+  width: 70px;
+  height: 70px;
+  pointer-events: none;
+  border-color: transparent;
+}
+
+/* Cuadrados */
+.square {
+    width: var(--square-size);
+    height: var(--square-size);
+    border: 2px solid var(--accent-color);
+    border-radius: var(--border-radius);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    font-size: 48px;
+    background-color: #1a1a1a; /* Fondo de los cuadrados */
+    color: var(--main-text-color);
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+.square:hover {
+    background-color: var(--accent-color);
+    color: var(--main-bg-color);
+}
+
+.square.is-selected {
+    background: var(--accent-color);
+    color: var(--main-bg-color);
+}
+
+/* Ganador */
+.winner {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: grid;
+    place-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.winner .text {
+    background: #111;
+    height: 300px;
+    width: 320px;
+    border: 2px solid var(--accent-color);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    color: var(--main-text-color);
+    text-align: center;
+}
+
+.winner .win {
+    margin: 0 auto;
+    width: fit-content;
+    border: 2px solid var(--accent-color);
+    border-radius: var(--border-radius);
+    display: flex;
+    gap: 15px;
+    padding: 10px;
+    background: var(--main-bg-color);
+}
+
+/* Canvas responsivo */
+canvas {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-width: 100%;
+    border: 2px solid var(--accent-color);
+    border-radius: var(--border-radius);
+}
+
+/* Efectos de neón */
+.neon {
+    text-shadow: 0 0 5px var(--accent-color), 0 0 10px var(--accent-color), 0 0 20px var(--accent-color), 0 0 40px var(--accent-color);
+}
+
+/* Diseño responsivo */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    p {
+        font-size: 1em;
+    }
+}
